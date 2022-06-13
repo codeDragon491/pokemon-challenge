@@ -1,0 +1,17 @@
+// Google font
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+// Abstract files
+@import "abstracts/variables";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+    min-height: 100%;
+    font-family: $ff-base;
+    font-size: 1rem;
+    background-color: $clr-base;
+    color: $clr-base-drk;
+}
