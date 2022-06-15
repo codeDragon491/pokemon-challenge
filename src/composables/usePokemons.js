@@ -26,7 +26,7 @@ const getAllPokemons = async () => {
       loading.value = false
     }
   } catch (err) {
-    error.value = err
+    error.value = 'Something went wrong. Try again later!'
     loading.value = false
   }
 }
@@ -53,7 +53,7 @@ const getPokemon = async (name) => {
       await sleep(1000)
       loading.value = false
     } catch (err) {
-      error.value = err
+      error.value = 'Something went wrong. Try again later'
       await sleep(1000)
       loading.value = false
     }
@@ -63,7 +63,7 @@ const getPokemon = async (name) => {
 
 
 const usePokemons = () => ({
-  loading, pokemon, getPokemon, getAllPokemons,
+  loading, pokemon, error, getPokemon, getAllPokemons,
 })
 
 export default usePokemons

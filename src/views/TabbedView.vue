@@ -6,33 +6,38 @@
           <div class="pokemon-wrapper-overlay" :class="`${activePokemon !== pokemon.name && 'overlay'}`" />
       </div>
     </div>
-    <div v-if="pokemon && !loading" class="pokemon-tab">
-      <h1 class="pokemon-header">{{pokemon.forms[0].name}}</h1>
-      <div class="pokemon-content">
-        <div class="column">
-          <h2>Abilities</h2>
-          <div v-for="item in pokemon.abilities" :key="item.ability.name" class="item-wrapper">
-            <img svg-inline class="icon" src="@/assets/icons/circle-check.svg" alt="circle-check" />
-            <p>{{item.ability.name}}</p>
+    <div v-if="!loading" class="pokemon-tab">
+      <div  v-if="pokemon">
+        <h1 class="pokemon-header">{{pokemon.forms[0].name}}</h1>
+        <div class="pokemon-content">
+          <div class="column">
+            <h2>Abilities</h2>
+            <div v-for="item in pokemon.abilities" :key="item.ability.name" class="item-wrapper">
+              <img svg-inline class="icon" src="@/assets/icons/circle-check.svg" alt="circle-check" />
+              <p>{{item.ability.name}}</p>
+            </div>
           </div>
-        </div>
-         <div class="column">
-          <h2>Moves</h2>
-          <div v-for="item in pokemon.moves" :key="item.move.name" class="item-wrapper">
-            <img svg-inline class="icon" src="@/assets/icons/circle-check.svg" alt="circle-check" />
-            <p>{{item.move.name}}</p>
+          <div class="column">
+            <h2>Moves</h2>
+            <div v-for="item in pokemon.moves" :key="item.move.name" class="item-wrapper">
+              <img svg-inline class="icon" src="@/assets/icons/circle-check.svg" alt="circle-check" />
+              <p>{{item.move.name}}</p>
+            </div>
           </div>
-        </div>
-        <div class="column">
-          <h2>Stats</h2>
-          <div v-for="item in pokemon.stats" :key="item.stat.name" class="item-wrapper">
-            <img svg-inline class="icon" src="@/assets/icons/circle-check.svg" alt="circle-check" />
-            <p>{{item.stat.name}}: {{item.base_stat}}</p>
+          <div class="column">
+            <h2>Stats</h2>
+            <div v-for="item in pokemon.stats" :key="item.stat.name" class="item-wrapper">
+              <img svg-inline class="icon" src="@/assets/icons/circle-check.svg" alt="circle-check" />
+              <p>{{item.stat.name}}: {{item.base_stat}}</p>
+            </div>
           </div>
         </div>
       </div>
+      <div v-else-if="error" class="error">
+        {{ error }}
     </div>
-    <div v-else-if="loading" class="loader-container">
+    </div>
+    <div v-else class="loader-container">
       <loader-round/>
     </div>
   </div>
@@ -50,13 +55,13 @@ export default {
     {name:'ditto', imageSrc: require('@/assets/images/ditto.png')}])
     const activePokemon = ref('pikachu')
 
-    const {loading, pokemon, getPokemon} = usePokemons()
+    const {loading, pokemon,  error, getPokemon} = usePokemons()
 
     onBeforeMount(async() => {
       await getPokemon('pikachu')
       })
 
-    return { pokemons, pokemon, loading, getPokemon, activePokemon}
+    return { pokemons, pokemon, loading, error, getPokemon, activePokemon}
   }
 }
 </script>
