@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import store from '../store'
+import store from '@/store'
 import app from '@/helpers/axiosConfig'
 
 const error = ref(null)
@@ -53,7 +53,9 @@ const getPokemon = async (name) => {
       await sleep(1000)
       loading.value = false
     } catch (err) {
-      error.value = 'Something went wrong. Try again later'
+      if(err.response && err.response.data) {
+        error.value = err.response.data
+      } else error.value = 'Something went wrong. Try again later'
       await sleep(1000)
       loading.value = false
     }
