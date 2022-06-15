@@ -1,5 +1,11 @@
 # nbi_pokemon-challenge
 
+## Views
+
+```
+There is no link from the tabbedView to the searchView so in order to access the searchView, you have to manually type the url /search-pokemons
+```
+
 ## Project setup
 ```
 npm install
