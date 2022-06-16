@@ -12,5 +12,7 @@
   }
   .loader-container {
      background-color: transparent;
-     @include flex-center;
+     display: flex;
+     justify-content: center;
+     align-items: center;
   }

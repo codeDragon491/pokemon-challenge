@@ -6,7 +6,7 @@
         placeholder="Search a pokemom by name"
       />
     </div>
-    <div v-if="!loading && pokemon || !loading && error" class="pokemon-tab">
+    <div v-if="!loading && pokemon || !loading && error" class="pokemon-tab tab">
        <pokemon-tab :pokemon="pokemon   " v-if="pokemon"/>
        <div v-else-if="error" class="error">
         {{ error }}
@@ -33,7 +33,6 @@ export default {
     const {loading, pokemon,  error, getPokemon} = usePokemons()
 
     const searchPokemon = (async(searchQuery) => {
-    console.log(searchQuery)
      await getPokemon(searchQuery)
     })
 
@@ -46,21 +45,5 @@ export default {
 .search-wrapper {
   display: flex;
   justify-content: center;
-}
-.pokemon-tab, .loader-container {
-  width: 100%;
-  min-height: 400px;
-  height: auto;
-  background-color: $clr-ntrl-min;
-  padding: 1rem 1.5rem;
-  margin: 0.5rem 0;
-  border-radius: 25px;
-  text-align: center;
-}
-.loader-container {
-   background-color: transparent;
-   display: flex;
-   justify-content: center;
-   align-items: center;
 }
 </style>

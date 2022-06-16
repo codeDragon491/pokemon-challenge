@@ -10,14 +10,21 @@ const pokemons = {
   },
   mutations: {
     addPokemon(state, pokemon) {
+      const pokemons = JSON.parse(localStorage.getItem('pokemons'))
+      if(pokemons){
+        state.list = pokemons
+      }
       state.list.unshift(pokemon)
       localStorage.setItem('pokemons', JSON.stringify(state.list))
     },
     getPokemon(state, name) {
-      if(localStorage.getItem('pokemons')){
       const pokemons = JSON.parse(localStorage.getItem('pokemons'))
-      state.pokemon = pokemons.find(pokemon => pokemon.forms[0].name === name)
-      } else state.pokemon = state.list.find(pokemon => pokemon.forms[0].name === name)
+      if(pokemons){
+        state.pokemon = pokemons.find(pokemon => pokemon.name === name)
+      } else state.pokemon = state.list.find(pokemon => pokemon.name === name)
+    },
+    clearPokemon(state) {
+      state.pokemon = null
     },
   },
   actions: {
