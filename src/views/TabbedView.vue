@@ -55,7 +55,7 @@ export default {
   width: 100px;
   height: 100px;
   background-color: $clr-ntrl-min;
-  border-radius: 9999px;
+  border-radius: 50%;
   padding: 0.5rem;
   margin: 1rem 0;
   overflow: hidden;

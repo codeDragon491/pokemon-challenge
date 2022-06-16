@@ -84,10 +84,4 @@ export default {
   height: 1.5rem;
   cursor: pointer;
 }
-.hidden {
-  visibility: hidden;
-}
-.visible {
-  visibility: visible;
-}
 </style>

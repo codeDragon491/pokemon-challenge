@@ -1,6 +1,6 @@
 <template>
     <div v-if="pokemon">
-        <h1 class="pokemon-header">{{pokemon.forms[0].name}}</h1>
+        <h1 class="pokemon-header">{{pokemon.name}}</h1>
         <div class="pokemon-content">
             <div class="column">
                 <h2>Abilities</h2>
@@ -55,10 +55,9 @@ export default {
       font-size: 1.125rem;
     }
     .item-wrapper {
-      margin-top: 0.5rem;
+      margin: 0.5rem 0.5rem 0;
       text-transform: capitalize;
       display: flex;
-      margin-right: 0.5rem;
       svg {
         display: none;
       }
