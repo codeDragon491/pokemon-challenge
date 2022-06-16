@@ -7,7 +7,7 @@
       />
     </div>
     <div v-if="!loading && pokemon || !loading && error" class="pokemon-tab tab">
-       <pokemon-tab :pokemon="pokemon   " v-if="pokemon"/>
+       <pokemon-tab with-image :pokemon="pokemon" v-if="pokemon"/>
        <div v-else-if="error" class="error">
         {{ error }}
        </div>
