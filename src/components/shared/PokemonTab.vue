@@ -1,5 +1,8 @@
 <template>
     <div v-if="pokemon">
+      <div v-show="withImage" class="pokemon-image-wrapper">
+        <img class="pokemon-image" :src="pokemon.sprites.front_default" alt="pokemon-image" />
+      </div>
         <h1 class="pokemon-header">{{pokemon.name}}</h1>
         <div class="pokemon-content">
             <div class="column">
@@ -34,6 +37,10 @@ export default {
     pokemon: {
       type: Object,
       default: null,
+    },
+    withImage: {
+      default: false,
+      type: Boolean,
     }
  }
 }
