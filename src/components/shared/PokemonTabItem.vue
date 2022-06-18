@@ -32,7 +32,7 @@
 
 <script>
 export default {
- name: "PokemonTab",
+ name: "PokemonTabItem",
  props: {
     pokemon: {
       type: Object,

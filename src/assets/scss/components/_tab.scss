@@ -1,6 +1,6 @@
 /******* tab && loader container *******/
 
-.tab, .loader-container {
+.tab-item, .loader-wrapper {
     width: 100%;
     min-height: 400px;
     height: auto;
@@ -10,7 +10,7 @@
     border-radius: 25px;
     text-align: center;
   }
-  .loader-container {
+  .loader-wrapper {
      background-color: transparent;
      display: flex;
      justify-content: center;

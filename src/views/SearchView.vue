@@ -6,13 +6,13 @@
         placeholder="Search a pokemom by name"
       />
     </div>
-    <div v-if="!loading && pokemon || !loading && error" class="pokemon-tab tab">
-       <pokemon-tab with-image :pokemon="pokemon" v-if="pokemon"/>
+    <div v-if="!loading && pokemon || !loading && error" class="pokemon-tab-item tab">
+       <pokemon-tab-item with-image :pokemon="pokemon" v-if="pokemon"/>
        <div v-else-if="error" class="error">
         {{ error }}
        </div>
     </div>
-    <div v-else-if="loading" class="loader-container">
+    <div v-else-if="loading" class="loader-wrapper">
       <loader-round/>
     </div>
   </div>
@@ -25,7 +25,7 @@ import SearchBar from "@/components/search/SearchBar"
 export default {
   name: 'SearchView',
   components: {
-    PokemonTab: defineAsyncComponent(() =>  import('@/components/shared/PokemonTab.vue')),
+    PokemonTabItem: defineAsyncComponent(() =>  import('@/components/shared/PokemonTabItem.vue')),
     LoaderRound: defineAsyncComponent(() =>  import('@/components/base/LoaderRound.vue')),
     SearchBar,
   },

@@ -1,18 +1,18 @@
 <template>
-  <div class="tab-container container">
-    <div class="pokemon-list">
+  <div class="tabbed-container container">
+    <div class="pokemon-tabs">
         <div v-for="pokemon in pokemons" :key="pokemon.name" class="pokemon-wrapper" @click="getPokemon(pokemon.name);activePokemon = pokemon.name">
           <img class="pokemon-image" :src="pokemon.imageSrc" alt="pokemon-image" />
           <div class="pokemon-wrapper-overlay" :class="`${activePokemon !== pokemon.name && 'overlay'}`" />
       </div>
     </div>
-    <div v-if="!loading" class="pokemon-tab tab">
-      <pokemon-tab :pokemon="pokemon" v-if="pokemon"/>
-      <div v-else-if="error" class="error">
-        {{ error }}
+    <div v-if="!loading" class="pokemon-tab-item tab-item">
+      <pokemon-tab-item :pokemon="pokemon" v-if="pokemon"/>
+      <div v-else-if="error">
+        <p class="error">{{ error }}</p>
       </div>
     </div>
-    <div v-else class="loader-container">
+    <div v-else class="loader-wrapper">
       <loader-round/>
     </div>
   </div>
@@ -23,7 +23,7 @@ import usePokemons from "@/composables/usePokemons"
 export default {
   name: "TabbedView",
   components: {
-    PokemonTab: defineAsyncComponent(() =>  import('@/components/shared/PokemonTab.vue')),
+    PokemonTabItem: defineAsyncComponent(() =>  import('@/components/shared/PokemonTabItem.vue')),
     LoaderRound: defineAsyncComponent(() =>  import('@/components/base/LoaderRound.vue'))
   },
   setup() {
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pokemon-list {
+.pokemon-tabs {
   display: flex;
   justify-content: space-between;
   align-items: center;
