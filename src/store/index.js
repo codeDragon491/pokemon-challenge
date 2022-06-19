@@ -5,7 +5,8 @@ const pokemons = {
   namespaced: true,
   state: {
     list: [],
-    pokemon: null
+    pokemon: null,
+    abilities: [],
   },
   mutations: {
     addPokemon(state, pokemon) {
@@ -21,6 +22,11 @@ const pokemons = {
       if(pokemons){
         state.pokemon = pokemons.find(pokemon => pokemon.name === name)
       } else state.pokemon = state.list.find(pokemon => pokemon.name === name)
+      state.abilities = [
+        {title:'abilities', abilities: state.pokemon.abilities, key: 'ability'}, 
+        {title:'moves', abilities: state.pokemon.moves, key: 'move'},
+        {title:'stats', abilities: state.pokemon.stats, key: 'stat'}
+      ]
     },
     clearPokemon(state) {
       state.pokemon = null

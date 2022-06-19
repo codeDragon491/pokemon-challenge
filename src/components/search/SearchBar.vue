@@ -4,7 +4,7 @@
       id="search-box"
       v-model="searchQuery"
       :placeholder="placeholder"
-      @keyup.enter="searchPokemon(searchQuery)"
+      @keyup.enter="search(searchQuery)"
     >
     <div
       :class="searchQuery ? 'hidden' : 'visible'"
@@ -47,12 +47,12 @@ export default {
 
     const searchQuery = ref(null)
     
-    const searchPokemon = (async(searchQuery) => {
+    const search = (async(searchQuery) => {
     if(!searchQuery) return
       context.emit('query', searchQuery)
     })
 
-    return { searchPokemon, searchQuery}
+    return { search, searchQuery}
   },
 }
 </script>
