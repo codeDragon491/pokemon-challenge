@@ -1,0 +1,26 @@
+@mixin flex-align ($i: center, $n: flex-start){
+  display: flex;
+  justify-content: $i;
+  align-items: $n;
+}
+
+@mixin circle ($i: 80, $n: 80 ) {
+  width: #{$i}px;
+  height: #{$n}px;
+  border-radius: 50%;
+}
+
+@mixin square($i: 1.5rem, $n: 1.5rem) {
+ width: $i;
+ height: $n;
+}
+@mixin center-vertical {
+ top: 50%;
+ transform: translateY(-50%);
+}
+
+@mixin overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

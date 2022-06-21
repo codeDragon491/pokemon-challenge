@@ -1,20 +1,20 @@
 <template>
   <div id="search-page" class="container">
-    <div class="search-wrapper">
+    <section class="search-wrapper">
       <search-bar
         @query="searchPokemon"
         placeholder="Search a pokemom by name"
       />
-    </div>
-    <div v-if="!loading && pokemon || !loading && error" class="tab-item">
+    </section>
+    <section v-if="!loading && pokemon || !loading && error" class="tab-item">
        <tab-item with-image :item="pokemon" :columns="pokemonAbilities" v-if="pokemon"/>
        <div v-else-if="error" class="error">
         {{ error }}
        </div>
-    </div>
-    <div v-else-if="loading" class="loader-wrapper">
+    </section>
+    <section v-else-if="loading" class="loader-wrapper">
       <loader-round/>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -45,7 +45,6 @@ export default {
 
 <style lang="scss">
 .search-wrapper {
-  display: flex;
-  justify-content: center;
+  @include flex-align;
 }
 </style>

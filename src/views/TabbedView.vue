@@ -1,19 +1,19 @@
 <template>
   <div id="tabbed-page" class="container">
-    <div class="tabs">
+    <section class="tabs">
       <tab v-for="tab in tabs" :key="tab.name" :tab="tab" @tab-clicked="getTabItem(tab)" 
         v-model:activeTab="activeTab"
       />
-    </div>
-    <div v-if="!loading" class="tab-item">
+    </section>
+    <section v-if="!loading" class="tab-item">
       <tab-item :item="pokemon" :columns="pokemonAbilities" v-if="pokemon"/>
       <div v-else-if="error">
         <p class="error">{{ error }}</p>
       </div>
-    </div>
-    <div v-else class="loader-wrapper">
+    </section>
+    <section v-else class="loader-wrapper">
       <loader-round/>
-    </div>
+    </section>
   </div>
 
 </template>
@@ -53,8 +53,6 @@ export default {
 
 <style lang="scss" scoped>
 .tabs {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-align(space-between, center);
 }
 </style>

@@ -63,7 +63,7 @@ export default {
   padding: 0.75rem;
 }
 #search-box {
-  font-family:  $ff-base;
+  font-family: $ff-base;
   width: -webkit-fill-available;
   border-radius: 1.5rem;
   border-style: none; 
@@ -75,13 +75,11 @@ export default {
 }
 .icon {
   position: absolute;
-  transition: opacity .5s ease-in-out;
-  top: 50%;
-  transform: translateY(-50%);
   right: 1rem;
+  transition: opacity .5s ease-in-out;
+  @include center-vertical;
   margin-right: 1rem;
-  width: 1.5rem;
-  height: 1.5rem;
+  @include square;
   cursor: pointer;
 }
 </style>

@@ -12,30 +12,26 @@ export default {
 <style lang="scss" scoped>
 .box {
   color: $clr-ntrl-min;
-	display: inline-block;
-	width: 100px;
-	height: 100px;
-	border-radius: 3px;
-	font-size: 30px;
-	padding: 1em;
-	position: relative;
-	margin-bottom: .25em;
-	vertical-align: top;
-	transition: .3s color, .3s border, .3s transform, .3s opacity;
+  display: inline-block;
+  @include square(100px, 100px);
+  border-radius: 3px;
+  font-size: 1.875rem;
+  padding: 1em;
+  position: relative;
+  margin-bottom: .25em;
+  vertical-align: top;
+  transition: .3s color, .3s border, .3s transform, .3s opacity;
 }
 .loader {
 	position: relative;
 	&:before,
 	&:after {
 		content: '';
-		width: inherit;
-		height: inherit;
+		@include square(inherit, inherit);
 		border-radius: 50%;
 		background-color: currentcolor;
 		opacity: 0.6;
-		position: absolute;
-		top: 0;
-		left: 0;
+		@include overlay;
 		animation: loader 2.0s infinite ease-in-out;
 	}
 	&:after {
@@ -54,14 +50,12 @@ export default {
 }
 @media screen and (min-width: 768px) {
   .box {
-    width: 150px;
-    height: 150px;
+    @include square(150px, 150px);
   }
 }
 @media screen and (min-width: 1024px) {
   .box {
-    width: 200px;
-    height: 200px;
+	@include square(200px, 200px);
   }
 }
 </style>

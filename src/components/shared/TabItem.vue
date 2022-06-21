@@ -42,44 +42,45 @@ export default {
   text-transform: capitalize;
 }
 .tab-item-content {
+  flex-direction: column;
+  @include flex-align(space-between, center);
   margin-top: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  text-align: left;
+  text-align: center;
   .column {
-    width: min-content;
     h2 {
       font-size: 1.125rem;
       text-transform: capitalize;
     }
     .item-wrapper {
-      margin: 0.5rem 0.5rem 0;
+      margin: 0.5rem 0 0;
       text-transform: capitalize;
-      display: flex;
       svg {
         display: none;
       }
     }
   }
 }
-@media screen and (min-width: 768px) {    
-.tab-item-header {
+@media screen and (min-width: 601px) {   
+  .tab-item-header {
     font-size: 2rem;
-}
-.tab-item-content {
+  }
+  .tab-item-content {
+    flex-direction: row;
+    text-align: left; 
+    @include flex-align(space-between);
     .column {
-    width: auto;
-    h2 {
-        font-size: 1.5rem;
-    }
-    .item-wrapper {
+      h2 {
+          font-size: 1.5rem;
+      }
+      .item-wrapper {
+        display: flex;
         margin-right: 0;
         svg {
-        margin-right: 0.25rem;
-        display: block;
+          margin-right: 0.25rem;
+          display: block;
         }
+      }
     }
-}
-}
+  }
 }
 </style>

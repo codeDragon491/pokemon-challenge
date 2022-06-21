@@ -25,37 +25,36 @@ export default {
 <style lang="scss" scoped>
 .tab-image-wrapper, .tab-image-wrapper-overlay{
   position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
+  @include flex-align(center, center);
+  @include circle;
   background-color: $clr-ntrl-min;
-  border-radius: 50%;
   padding: 0.5rem;
   margin: 1rem 0;
   overflow: hidden;
   cursor: pointer;
 }
 .tab-image-wrapper-overlay {
-  position: absolute;
-  top:0;
-  left:0;
+  @include overlay;
   margin: 0;
-  background-color: transparent;
+  background-color: $clr-ntrl-trn;
 }
-.overlay{
-  background: $clr-base-drk-trn;
+.overlay {
+  background: rgba($clr-base-drk, 0.25);
 }
 .tab-image {
   max-width: 100%;
 }
 .tab-image-wrapper:nth-of-type(1) .tab-image {
-  transform: scale(0.9);
+  transform: scale(0.8);
+}
+@media screen and (min-width: 375px) {
+.tab-image-wrapper, .tab-image-wrapper-overlay {
+    @include circle(100, 100);
+  }
 }
 @media screen and (min-width: 768px) {
   .tab-image-wrapper, .tab-image-wrapper-overlay {
-    width: 150px;
-    height: 150px;
+    @include circle(150, 150);
     margin: 1rem;
   }
   .tab-image-wrapper-overlay {
@@ -67,8 +66,7 @@ export default {
 }
 @media screen and (min-width: 1024px) {
   .tab-image-wrapper, .tab-image-wrapper-overlay {
-    width: 200px;
-    height: 200px;
+    @include circle(200, 200);
   }
 }
 </style>
