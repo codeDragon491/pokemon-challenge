@@ -5,16 +5,14 @@
       v-model="searchQuery"
       :placeholder="placeholder"
       @keyup.enter="search(searchQuery)"
-    >
-    <div
-      :class="searchQuery ? 'hidden' : 'visible'"
-    >
+    />
+    <div :class="searchQuery ? 'hidden' : 'visible'">
       <img
         svg-inline
         class="icon icon-search"
         alt="icon-search"
         src="@/assets/icons/search.svg"
-      >
+      />
     </div>
     <div
       :class="searchQuery ? 'visible' : 'hidden'"
@@ -25,36 +23,35 @@
         class="icon icon-close"
         alt="icon-close"
         src="@/assets/icons/close.svg"
-      >
+      />
     </div>
   </div>
 </template>
 <script>
-import { ref } from "vue"
+import { ref } from "vue";
 export default {
-  name: 'SearchBar',
+  name: "SearchBar",
   props: {
     query: {
-      default: '',
+      default: "",
       type: String,
     },
     placeholder: {
       type: String,
-      default: '',
+      default: "",
     },
   },
-   setup(props, context) {
+  setup(props, context) {
+    const searchQuery = ref(null);
 
-    const searchQuery = ref(null)
-    
-    const search = (async(searchQuery) => {
-    if(!searchQuery) return
-      context.emit('query', searchQuery)
-    })
+    const search = (searchQuery) => {
+      if (!searchQuery) return;
+      context.emit("query", searchQuery);
+    };
 
-    return { search, searchQuery}
+    return { search, searchQuery };
   },
-}
+};
 </script>
 <style lang="scss" scoped>
 .search-box-wrapper {
@@ -66,7 +63,7 @@ export default {
   font-family: $ff-base;
   width: -webkit-fill-available;
   border-radius: 1.5rem;
-  border-style: none; 
+  border-style: none;
   padding: 0.75rem 1rem;
   font-size: 1rem;
   &::placeholder {
@@ -76,7 +73,7 @@ export default {
 .icon {
   position: absolute;
   right: 1rem;
-  transition: opacity .5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   @include center-vertical;
   margin-right: 1rem;
   @include square;
