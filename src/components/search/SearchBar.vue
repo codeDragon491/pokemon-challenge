@@ -32,10 +32,6 @@ import { ref } from "vue";
 export default {
   name: "SearchBar",
   props: {
-    query: {
-      default: "",
-      type: String,
-    },
     placeholder: {
       type: String,
       default: "",
