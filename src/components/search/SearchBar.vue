@@ -4,7 +4,7 @@
       id="search-box"
       v-model="searchQuery"
       :placeholder="placeholder"
-      @keyup.enter="search(searchQuery)"
+      @keyup.enter="search"
     />
     <div :class="searchQuery ? 'hidden' : 'visible'">
       <img
@@ -31,21 +31,17 @@
 import { ref } from "vue";
 export default {
   name: "SearchBar",
-  props: {
-    placeholder: {
-      type: String,
-      default: "",
-    },
-  },
   setup(props, context) {
     const searchQuery = ref(null);
 
-    const search = (searchQuery) => {
-      if (!searchQuery) return;
-      context.emit("query", searchQuery);
+    const placeholder = "Search a pokemom by name";
+
+    const search = () => {
+      if (!searchQuery.value) return;
+      context.emit("query", searchQuery.value);
     };
 
-    return { search, searchQuery };
+    return { search, searchQuery, placeholder };
   },
 };
 </script>

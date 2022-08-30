@@ -1,46 +1,62 @@
 <template>
   <div id="search-page" class="container">
     <section class="search-wrapper">
-      <search-bar
-        @query="searchPokemon"
-        placeholder="Search a pokemom by name"
-      />
+      <search-bar @query="searchPokemon" />
     </section>
-    <section v-if="!loading && pokemon || !loading && error" class="tab-item">
-       <tab-item with-image :item="pokemon" :columns="pokemonAbilities" v-if="pokemon"/>
-       <div v-else-if="error" class="error">
+    <section
+      v-if="(!loading && pokemon) || (!loading && error)"
+      class="tab-item"
+    >
+      <tab-item
+        with-image
+        :item="pokemon"
+        :columns="pokemonAbilities"
+        v-if="pokemon"
+      />
+      <div v-else-if="error" class="error">
         {{ error }}
-       </div>
+      </div>
     </section>
     <section v-else-if="loading" class="loader-wrapper">
-      <loader-round/>
+      <loader-round />
     </section>
   </div>
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue"
-import usePokemons from "@/composables/usePokemons"
-import SearchBar from "@/components/search/SearchBar"
+import { defineAsyncComponent } from "vue";
+import usePokemons from "@/composables/usePokemons";
+import SearchBar from "@/components/search/SearchBar";
 
 export default {
-  name: 'SearchView',
+  name: "SearchView",
   components: {
-    TabItem: defineAsyncComponent(() =>  import('@/components/shared/TabItem.vue')),
-    LoaderRound: defineAsyncComponent(() =>  import('@/components/base/LoaderRound.vue')),
+    TabItem: defineAsyncComponent(() =>
+      import("@/components/shared/TabItem.vue")
+    ),
+    LoaderRound: defineAsyncComponent(() =>
+      import("@/components/base/LoaderRound.vue")
+    ),
     SearchBar,
   },
   setup() {
+    const { loading, pokemon, pokemonAbilities, error, getPokemon } =
+      usePokemons();
 
-    const {loading, pokemon, pokemonAbilities, error, getPokemon} = usePokemons()
+    const searchPokemon = async (searchQuery) => {
+      await getPokemon(searchQuery);
+    };
 
-    const searchPokemon = (async(searchQuery) => {
-     await getPokemon(searchQuery)
-    })
-
-    return { pokemon, loading, error, getPokemon, searchPokemon, pokemonAbilities}
-  }
-}
+    return {
+      pokemon,
+      loading,
+      error,
+      getPokemon,
+      searchPokemon,
+      pokemonAbilities,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
