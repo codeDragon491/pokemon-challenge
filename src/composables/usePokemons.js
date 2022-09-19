@@ -11,9 +11,8 @@ const getPokemon = async (name) => {
   loading.value = true
   store.commit('pokemons/clearPokemon')
   try {
-    const pokemons = JSON.parse(localStorage.getItem('pokemons'))
-    if (pokemons) {
-      const pokemonIsLoaded = pokemons.some(pokemon => pokemon.name === name)
+    if (pokemons.value) {
+      const pokemonIsLoaded = pokemons.value.some(pokemon => pokemon.name === name)
       if (pokemonIsLoaded) {
         store.commit('pokemons/getPokemon', name)
       } else {
@@ -32,6 +31,8 @@ const getPokemon = async (name) => {
     loading.value = false
   }
 }
+
+const pokemons = computed(() => store.state.pokemons.list)
 
 const pokemon = computed(() => store.state.pokemons.pokemon)
 
