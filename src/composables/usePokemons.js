@@ -11,7 +11,7 @@ const getPokemon = async (name) => {
   loading.value = true
   store.commit('pokemons/clearPokemon')
   try {
-    if (pokemons.value) {
+    if (pokemons.value.length) {
       const pokemonIsLoaded = pokemons.value.some(pokemon => pokemon.name === name)
       if (pokemonIsLoaded) {
         store.commit('pokemons/getPokemon', name)
@@ -36,11 +36,11 @@ const pokemons = computed(() => store.state.pokemons.list)
 
 const pokemon = computed(() => store.state.pokemons.pokemon)
 
-const pokemonAbilities = computed(() => store.state.pokemons.abilities)
+const pokemonColumns = computed(() => store.state.pokemons.columns)
 
 
 const usePokemons = () => ({
-  loading, pokemon, pokemonAbilities, error, getPokemon,
+  loading, pokemon, pokemonColumns, error, getPokemon,
 })
 
 export default usePokemons

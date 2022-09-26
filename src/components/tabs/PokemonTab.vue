@@ -1,14 +1,17 @@
 <template>
-   <div class="tab-image-wrapper" @click="$emit('tab-clicked')">
-    <img class="tab-image" :src="tab.imageSrc" alt="image" />
-    <div class="tab-image-wrapper-overlay" :class="`${activeTab !== tab.name && 'overlay'}`" />
-   </div>
+  <div class="pokemon-tab-image-wrapper" @click="$emit('tab-clicked')">
+    <img class="pokemon-tab-image" :src="tab.imageSrc" alt="image" />
+    <div
+      class="pokemon-tab-image-wrapper-overlay"
+      :class="`${activeTab !== tab.name && 'overlay'}`"
+    />
+  </div>
 </template>
 
 <script>
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Tab',
+  name: "PokemonTab",
   props: {
     tab: {
       type: Object,
@@ -16,14 +19,15 @@ export default {
     },
     activeTab: {
       type: String,
-      default: '',
+      default: "",
     },
- }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.tab-image-wrapper, .tab-image-wrapper-overlay{
+.pokemon-tab-image-wrapper,
+.pokemon-tab-image-wrapper-overlay {
   position: relative;
   @include flex-align(center, center);
   @include circle;
@@ -33,7 +37,7 @@ export default {
   overflow: hidden;
   cursor: pointer;
 }
-.tab-image-wrapper-overlay {
+.pokemon-tab-image-wrapper-overlay {
   @include overlay;
   margin: 0;
   background-color: $clr-ntrl-trn;
@@ -41,31 +45,34 @@ export default {
 .overlay {
   background: rgba($clr-base-drk, 0.25);
 }
-.tab-image {
+.pokemon-tab-image {
   max-width: 100%;
 }
-.tab-image-wrapper:nth-of-type(1) .tab-image {
+.pokemon-tab-image-wrapper:nth-of-type(1) .pokemon-tab-image {
   transform: scale(0.8);
 }
 @media screen and (min-width: 375px) {
-.tab-image-wrapper, .tab-image-wrapper-overlay {
+  .pokemon-tab-image-wrapper,
+  .pokemon-tab-image-wrapper-overlay {
     @include circle(100, 100);
   }
 }
 @media screen and (min-width: 768px) {
-  .tab-image-wrapper, .tab-image-wrapper-overlay {
+  .pokemon-tab-image-wrapper,
+  .pokemon-tab-image-wrapper-overlay {
     @include circle(150, 150);
     margin: 1rem;
   }
-  .tab-image-wrapper-overlay {
-    margin: 0
+  .pokemon-tab-image-wrapper-overlay {
+    margin: 0;
   }
   .overlay {
     margin: 0;
   }
 }
 @media screen and (min-width: 1024px) {
-  .tab-image-wrapper, .tab-image-wrapper-overlay {
+  .pokemon-tab-image-wrapper,
+  .pokemon-tab-image-wrapper-overlay {
     @include circle(200, 200);
   }
 }

@@ -1,12 +1,11 @@
 <template>
-  <div class="box loader">
-  </div>
+  <div class="box loader"></div>
 </template>
 
 <script>
 export default {
- name:  'LoaderRound',
-}
+  name: "LoaderRound",
+};
 </script>
 
 <style lang="scss" scoped>
@@ -18,35 +17,35 @@ export default {
   font-size: 1.875rem;
   padding: 1em;
   position: relative;
-  margin-bottom: .25em;
+  margin-bottom: 0.25em;
   vertical-align: top;
-  transition: .3s color, .3s border, .3s transform, .3s opacity;
+  transition: 0.3s color, 0.3s border, 0.3s transform, 0.3s opacity;
 }
 .loader {
-	position: relative;
-	&:before,
-	&:after {
-		content: '';
-		@include square(inherit, inherit);
-		border-radius: 50%;
-		background-color: currentcolor;
-		opacity: 0.6;
-		@include overlay;
-		animation: loader 2.0s infinite ease-in-out;
-	}
-	&:after {
-		animation-delay: -1.0s;
-	}
+  position: relative;
+  &:before,
+  &:after {
+    content: "";
+    @include square(inherit, inherit);
+    border-radius: 50%;
+    background-color: currentcolor;
+    opacity: 0.6;
+    @include overlay;
+    animation: loader 2s infinite ease-in-out;
+  }
+  &:after {
+    animation-delay: -1s;
+  }
 }
 
 @keyframes loader {
-	0%,
-	100% {
-		transform: scale(0.0);
-	}
-	50% {
-		transform: scale(1.0);
-	}
+  0%,
+  100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
 }
 @media screen and (min-width: 768px) {
   .box {
@@ -55,7 +54,7 @@ export default {
 }
 @media screen and (min-width: 1024px) {
   .box {
-	@include square(200px, 200px);
+    @include square(200px, 200px);
   }
 }
 </style>

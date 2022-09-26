@@ -1,7 +1,7 @@
 <template>
   <div id="tabbed-page" class="container">
-    <section class="tabs">
-      <tab
+    <section class="pokemon-tabs">
+      <pokemon-tab
         v-for="tab in tabs"
         :key="tab.name"
         :tab="tab"
@@ -9,8 +9,12 @@
         v-model:activeTab="activeTab"
       />
     </section>
-    <section v-if="!loading" class="tab-item">
-      <tab-item :item="pokemon" :columns="pokemonAbilities" v-if="pokemon" />
+    <section v-if="!loading" class="pokemon-tab-item">
+      <pokemon-tab-item
+        :item="pokemon"
+        :columns="pokemonColumns"
+        v-if="pokemon"
+      />
       <div v-else-if="error">
         <p class="error">{{ error }}</p>
       </div>
@@ -23,41 +27,39 @@
 <script>
 import { ref, onBeforeMount, defineAsyncComponent } from "vue";
 import usePokemons from "@/composables/usePokemons";
-import Tab from "@/components/shared/Tab.vue";
+import PokemonTab from "@/components/tabs/PokemonTab.vue";
 
 export default {
   name: "TabbedView",
   components: {
-    Tab,
-    TabItem: defineAsyncComponent(() =>
-      import("@/components/shared/TabItem.vue")
+    PokemonTab,
+    PokemonTabItem: defineAsyncComponent(() =>
+      import("@/components/shared/PokemonTabItem.vue")
     ),
     LoaderRound: defineAsyncComponent(() =>
       import("@/components/base/LoaderRound.vue")
     ),
   },
   setup() {
-    const middlePokemon = "pikachu";
-    
+    const activeTab = ref("pikachu");
+
     const tabs = ref([
       {
         name: "charmander",
         imageSrc: require("@/assets/images/charmander.jpg"),
       },
       {
-        name: middlePokemon,
+        name: activeTab.value,
         imageSrc: require("@/assets/images/pikachu.jpg"),
       },
       { name: "ditto", imageSrc: require("@/assets/images/ditto.png") },
     ]);
 
-    const activeTab = ref(middlePokemon);
-
-    const { loading, pokemon, pokemonAbilities, error, getPokemon } =
+    const { loading, pokemon, pokemonColumns, error, getPokemon } =
       usePokemons();
 
     onBeforeMount(async () => {
-      await getPokemon("pikachu");
+      await getPokemon(activeTab.value);
     });
 
     const getTabItem = async (tab) => {
@@ -71,14 +73,14 @@ export default {
       error,
       getTabItem,
       activeTab,
-      pokemonAbilities,
+      pokemonColumns,
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.tabs {
+.pokemon-tabs {
   @include flex-align(space-between, center);
 }
 </style>

@@ -5,12 +5,12 @@
     </section>
     <section
       v-if="(!loading && pokemon) || (!loading && error)"
-      class="tab-item"
+      class="pokemon-tab-item"
     >
-      <tab-item
+      <pokemon-tab-item
         with-image
         :item="pokemon"
-        :columns="pokemonAbilities"
+        :columns="pokemonColumns"
         v-if="pokemon"
       />
       <div v-else-if="error" class="error">
@@ -31,8 +31,8 @@ import SearchBar from "@/components/search/SearchBar";
 export default {
   name: "SearchView",
   components: {
-    TabItem: defineAsyncComponent(() =>
-      import("@/components/shared/TabItem.vue")
+    PokemonTabItem: defineAsyncComponent(() =>
+      import("@/components/shared/PokemonTabItem.vue")
     ),
     LoaderRound: defineAsyncComponent(() =>
       import("@/components/base/LoaderRound.vue")
@@ -40,7 +40,7 @@ export default {
     SearchBar,
   },
   setup() {
-    const { loading, pokemon, pokemonAbilities, error, getPokemon } =
+    const { loading, pokemon, pokemonColumns, error, getPokemon } =
       usePokemons();
 
     const searchPokemon = async (searchQuery) => {
@@ -53,7 +53,7 @@ export default {
       error,
       getPokemon,
       searchPokemon,
-      pokemonAbilities,
+      pokemonColumns,
     };
   },
 };
