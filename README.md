@@ -1,4 +1,4 @@
-# nbi_pokemon-challenge
+# pokemon-challenge
 
 ## Views
 
